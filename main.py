@@ -2,6 +2,7 @@ from typing import Optional
 
 from fastapi import FastAPI
 
+from fastapi.responses import HTMLResponse #インポート
 app = FastAPI()
 
 
@@ -29,3 +30,23 @@ def omikuji():
     ]
     
     return {"result" : omikuji_list[random.randrange(10)]}
+
+@app.get("/index")
+def index():
+    html_content = """
+    <html>
+        <head>
+            <title>ようこそ！My Webページ</title>
+            <style>
+                body { font-family: sans-serif; background-color: #f0f0f0; text-align: center; padding-top: 50px; }
+                h1 { color: #333366; }
+                p { color: #666666; }
+            </style>
+        </head>
+        <body>
+            <h1>こんにちは、世界！</h1>
+            <p>これはFastAPIで作ったHTMLページです。</p>
+        </body>
+    </html>
+    """
+    return HTMLResponse(content=html_content, status_code=200)
