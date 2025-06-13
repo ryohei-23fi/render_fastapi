@@ -51,8 +51,12 @@ def index():
     """
     return HTMLResponse(content=html_content, status_code=200)
 
+# プレゼント情報を受け取るためのモデル
+class Present(BaseModel):
+    item: str
+
 @app.post("/present")
-async def give_present(present: Present):
+async def receive_birthday_present(present: Present):
     return {
-        "response": f"🎉 ハッピーバースデー！ {present}ありがとう。お返しにバースデーケーキをどうぞ 🎂"
+        "message": f"🎉 ハッピーバースデー！『{present.item}』をありがとう！お返しにバースデーケーキをどうぞ 🎂"
     }
