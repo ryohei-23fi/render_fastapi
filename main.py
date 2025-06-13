@@ -52,7 +52,7 @@ def index():
     return HTMLResponse(content=html_content, status_code=200)
 
 @app.post("/present")
-async def receive_birthday_present(present: Present):
+async def give_present(present: Present):
     return {
-        "message": f"🎉 ハッピーバースデー！『{present.item}』をありがとう！お返しにバースデーケーキをどうぞ 🎂"
+        "response": f"🎉 ハッピーバースデー！ {present}ありがとう。お返しにバースデーケーキをどうぞ 🎂"
     }
